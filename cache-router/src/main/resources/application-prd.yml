@@ -1,0 +1,10 @@
+grpc:
+  server:
+    port: 18080
+
+zookeeper:
+  server: 172.16.0.3:2181
+  sessionTimeoutMs: 6000
+  connectionTimeoutMs: 6000
+  maxRetries: 3
+  baseSleepTimeMs: 1000

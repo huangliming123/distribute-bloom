@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cache-store
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    distribution:
+      percentiles-histogram: true
+      percentiles-histogram.cache-store_add: true
+      percentiles-histogram.cache-store_findContains: true
+      percentiles-histogram.cache-store_findNotContains: true

@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+grpc:
+  server:
+    port: 19090
+
+thrift:
+  server:
+    port: 1998
+
+zookeeper:
+  server: 127.0.0.1:2181
+  sessionTimeoutMs: 6000
+  connectionTimeoutMs: 6000
+  maxRetries: 3
+  baseSleepTimeMs: 1000

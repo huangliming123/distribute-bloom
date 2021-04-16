@@ -1,0 +1,60 @@
+syntax = "proto3";
+import "common.proto";
+import "google/protobuf/empty.proto";
+package im.cu.grpc.api.server.cache.store;
+
+service CacheStoreService {
+  rpc add (CacheStoreAddReq) returns (CacheStoreAddRes);
+  rpc findContains (CacheStoreFilterReq) returns (CacheStoreFilterRes);
+  rpc findNotContains (CacheStoreFilterReq) returns (CacheStoreFilterRes);
+  rpc migrating(CacheMigrateReq) returns(CacheMigrateRes);
+  rpc importing(stream CacheImportReq) returns(stream CacheImportRes);
+  rpc keys(google.protobuf.Empty) returns(SlotsGetRes);
+}
+
+message CacheStoreAddReq {
+  CacheType cacheType = 1;
+  CacheKey cacheKey = 2;
+  int32 value = 3;
+  int64 date = 4;
+}
+
+message CacheStoreAddRes {
+  ResponseCode responseCode = 1;
+}
+
+message CacheStoreFilterReq {
+  CacheKey cacheKey = 1;
+  repeated int32 values = 2;
+  CacheConfig cacheConfig = 3;
+}
+
+message CacheStoreFilterRes {
+  repeated int32 values = 1;
+}
+
+message CacheMigrateReq {
+  int32 slotId = 1;
+  HostAndPort hostAndPort = 2;
+}
+
+message CacheMigrateRes {
+
+}
+
+message CacheImportReq {
+  int32 slotId = 1;
+  CacheType cacheType = 2;
+  string combineKey = 3;
+  bytes bloomSerializable = 4;
+}
+
+message CacheImportRes {
+  CacheType cacheType = 1;
+  int32 slotId = 2;
+  string combineKey = 3;
+}
+
+message SlotsGetRes {
+  map<int32, int32> slots = 1;
+}

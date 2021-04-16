@@ -1,0 +1,14 @@
+server:
+  port: 6666
+grpc:
+  server:
+    port: 16666
+thrift:
+  server:
+    port: 26666
+
+spring:
+  application:
+    name: test-case
+  profiles:
+    active: dev

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cache-proxy
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    distribution:
+      percentiles-histogram: true
+      percentiles-histogram.cache-proxy_add: true
+      percentiles-histogram.cache-proxy_findContains: true
+      percentiles-histogram.cache-proxy_findNotContains: true

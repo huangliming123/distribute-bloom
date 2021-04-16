@@ -1,0 +1,41 @@
+syntax = "proto3";
+import "common.proto";
+package im.cu.grpc.api.server.cache.proxy;
+
+service CacheProxyService {
+  rpc add (CacheProxyAddReq) returns (CacheProxyAddRes);
+  rpc findContains (CacheProxyFilterReq) returns (CacheProxyFilterRes);
+  rpc findNotContains (CacheProxyFilterReq) returns (CacheProxyFilterRes);
+  rpc syncRouterTable(RouterTableSyncReq) returns (RouterTableSyncRes);
+  rpc beginMigrating(RouterTableSyncReq) returns (RouterTableSyncRes);
+  rpc commitMigrating(RouterTableSyncReq) returns (RouterTableSyncRes);
+}
+
+message CacheProxyAddReq {
+  CacheType cacheType = 1;
+  CacheKey cacheKey = 2;
+  int32 value = 3;
+  int64 date = 4;
+}
+
+message CacheProxyAddRes {
+  ResponseCode responseCode = 1;
+}
+
+message CacheProxyFilterReq {
+  CacheKey cacheKey = 1;
+  repeated int32 values = 2;
+  CacheConfig cacheConfig = 3;
+}
+
+message CacheProxyFilterRes {
+  repeated int32 values = 1;
+}
+
+message RouterTableSyncReq {
+  map<int32, HostAndPort> routerTable = 1;
+}
+
+message RouterTableSyncRes {
+  ResponseCode responseCode = 1;
+}

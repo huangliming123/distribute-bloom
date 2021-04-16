@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>路由表</title>
+    <style type="text/css">
+        table {border-collapse: collapse; font-size: 14px; width: 80%; margin: auto}
+        table, th, td {border: 1px solid darkslategray;padding: 10px}
+    </style>
+</head>
+<body>
+<div style="text-align: center">
+    <span style="color: darkslategray; font-size: 30px">用户表格</span>
+    <hr/>
+    <table class="list">
+        <tr>
+            <th>节点</th>
+            <th>slot分部</th>
+            <th>keys</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="map : ${routerTable}">
+            <td class="serviceInfo" th:text="${map.key}"></td>
+            <td th:text="${map.value}"></td>
+            <td th:text="${keys[map.key]}"></td>
+            <td><button type="button" class="detail">查看</button> <button type="button" class="offline">离线</button></td>
+        </tr>
+    </table>
+    <div style="margin-top: 10px"s><button id="auto-re-shard" type="button">AutoReShard</button></div>
+</div>
+<script src="https://finka.cn/asset/js/jquery-1.11.0.min.js"></script>
+<script>
+    $(function () {
+        $(".detail").click(function () {
+            let serviceInfo = $(this).parent().siblings(".serviceInfo").text();
+            console.log(serviceInfo)
+            location.href = "/admin/node/" + serviceInfo;
+        })
+
+        $(".offline").click(function () {
+            if (confirm("确定要下线该服务?")) {
+                let serviceInfo = $(this).parent().siblings(".serviceInfo").text();
+                $.ajax({
+                    url: "/router/offline",
+                    data: serviceInfo,
+                    type: "POST",
+                    dataType: 'json',
+                    contentType : "application/json",
+                    context: this
+                })
+            }
+        })
+
+        $("#auto-re-shard").click(function () {
+            if (confirm("确定要执行AutoReShard?")) {
+                $.ajax({
+                    url: "/router/auto-re-shard",
+                    type: "POST",
+                    context: this
+                })
+            }
+        })
+    })
+</script>
+</body>
+</html>

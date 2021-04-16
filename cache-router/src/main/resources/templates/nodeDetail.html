@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>路由表</title>
+    <style type="text/css">
+        table {border-collapse: collapse; font-size: 14px; width: 80%; margin: auto}
+        table, th, td {border: 1px solid darkslategray;padding: 10px}
+    </style>
+</head>
+<body>
+<div style="text-align: center">
+    <span style="color: darkslategray; font-size: 30px">结点数据</span>
+    <hr/>
+    <table class="list">
+        <tr>
+            <th>slot</th>
+            <th>keys</th>
+        </tr>
+        <tr th:each="map : ${map}">
+            <td class="serviceInfo" th:text="${map.key}"></td>
+            <td>
+                <input th:value="${map.value}"/>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

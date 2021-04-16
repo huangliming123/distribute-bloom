@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "common.proto";
+package im.cu.grpc.api.server.cache.router;
+
+service CacheRouterService {
+  rpc getRouterTable (CacheRouterGetReq) returns (CacheRouterGetRes);
+}
+
+message CacheRouterGetRes {
+  map<int32, HostAndPort> routerTable = 1;
+}
+
+message CacheRouterGetReq {
+
+}

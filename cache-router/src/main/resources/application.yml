@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: cache-router
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

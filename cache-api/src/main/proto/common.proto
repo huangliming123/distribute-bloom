@@ -1,0 +1,27 @@
+syntax = "proto3";
+package im.cu.grpc.api.server.cache;
+
+message CacheKey {
+  string prefix = 1;
+  int32 userId = 2;
+}
+
+message CacheConfig {
+  CacheType cacheType = 1;
+  int32 days = 2;
+}
+
+message HostAndPort {
+  string host = 1;
+  int32 port = 2;
+}
+
+enum CacheType {
+  Full = 0;
+  Limit = 1;
+}
+
+enum ResponseCode {
+  OK = 0;
+  Fail = 1;
+}

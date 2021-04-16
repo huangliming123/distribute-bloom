@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+im.cu.api.grpc.GrpcClientConfiguration,\
+im.cu.api.grpc.GrpcServerConfiguration,\
+im.cu.api.register.ZkConfiguration,\
+im.cu.api.monitor.MeterRegistryConfiguration,\
+im.cu.api.utils.DumpServiceConfiguration,\
+im.cu.api.utils.RetryAspect
